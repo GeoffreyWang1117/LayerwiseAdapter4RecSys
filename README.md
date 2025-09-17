@@ -192,12 +192,33 @@ open docs/EXPERIMENT_REPORT.md
 2. 实现`calculate_layer_weights()`方法
 3. 在配置文件中指定新策略
 
-## 📚 文档
+## � 高级实验框架
+
+### 核心分析组件
+- **Fisher信息不确定性**: 认知vs随机不确定性分解，层级敏感度分析
+- **SHAP价值分析**: 基于信息熵的特征重要性量化
+- **神经激活模式**: 层级能量流动和表征学习效率分析
+- **QLoRA集成**: 4-bit量化与低秩适配的最优配置验证
+
+### 动态层选择机制 🎯
+- **输入复杂度分析**: 序列长度、词汇多样性、语义密度的实时评估
+- **资源自适应算法**: 移动端/边缘/云端的动态层数选择
+- **性能保证策略**: <5%质量退化下实现50-75%资源节省
+- **生产部署框架**: A/B测试和质量监控的完整解决方案
+
+### 多维架构探索
+- **4-32层评估**: 系统性架构深度与推荐性能的关系研究
+- **压缩效率分析**: 不同深度下的知识蒸馏潜力评估
+- **收敛特性**: 训练动态和泛化能力的深入分析
+- **最优配置指南**: 针对不同应用场景的架构推荐
+
+## �📚 文档
 
 - [项目总结](docs/PROJECT_FINAL_SUMMARY.md)
 - [实验报告](docs/EXPERIMENT_REPORT.md)  
-- [蒸馏指南](docs/DISTILLATION_GUIDE.md)
-- [API参考](docs/API_REFERENCE.md)
+- [动态层选择报告](results/dynamic_layer_selection/)
+- [多层架构分析](results/multi_layer_architecture/)
+- [QLoRA集成验证](results/qlora_integration/)
 
 ## 🤝 贡献
 
