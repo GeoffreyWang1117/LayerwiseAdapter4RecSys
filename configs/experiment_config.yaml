@@ -1,0 +1,260 @@
+# WWW2026 Experiment Configuration
+# Fisher Information Matrix-driven Layerwise Knowledge Distillation
+
+# Experiment Metadata
+experiment:
+  name: "WWW2026_Fisher_Layerwise_Distillation"
+  version: "2.0.0"
+  conference: "WWW 2026"
+  submission_date: "2025-12-15"
+  description: "Fisher信息矩阵驱动的层级知识蒸馏推荐系统"
+  
+  # Research Questions
+  research_questions:
+    - "RQ1: Fisher信息矩阵能否有效量化层级对推荐任务的贡献度？"
+    - "RQ2: 上层语义vs下层语法的权重分配策略如何影响蒸馏效果？"
+    - "RQ3: Llama3作为Teacher模型在推荐任务上的优势有多大？"
+    - "RQ4: Fisher驱动的蒸馏能否在保持语义理解的同时实现模型压缩？"
+  
+  # Key Hypotheses
+  hypotheses:
+    - "H1: 高层语义层(70-100%)比底层语法层(0-30%)对推荐任务更重要"
+    - "H2: Fisher信息矩阵可以准确识别任务关键层级"
+    - "H3: 层级权重递增策略优于均匀权重分配"
+    - "H4: Llama3在推荐任务上优于其他开源LLM"
+
+# Environment Configuration
+environment:
+  # Reproducibility
+  seed: 42
+  deterministic_algorithms: true
+  cuda_deterministic: true
+  
+  # Hardware
+  device: "auto"  # auto, cuda, cpu, mps
+  mixed_precision: true
+  gradient_checkpointing: true
+  
+  # Memory Management
+  max_gpu_memory_fraction: 0.9
+  empty_cache_frequency: 100  # steps
+
+# Logging and Monitoring
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Output Destinations
+  log_to_file: true
+  log_to_console: true
+  log_to_wandb: false  # Set true if using Weights & Biases
+  
+  # Log Files
+  log_dir: "logs/experiments/"
+  log_filename: "www2026_experiment_{timestamp}.log"
+  
+  # Monitoring
+  monitor_gpu_usage: true
+  monitor_cpu_usage: true
+  monitor_memory_usage: true
+
+# Metrics and Evaluation
+metrics:
+  # Core Recommendation Metrics
+  recommendation_metrics:
+    - "ndcg@5"
+    - "ndcg@10"
+    - "mrr"           # Mean Reciprocal Rank
+    - "hit_rate@5"
+    - "hit_rate@10"
+    - "diversity_score"
+    - "novelty_score"
+  
+  # Knowledge Distillation Metrics
+  distillation_metrics:
+    - "distillation_loss"
+    - "task_loss"
+    - "layer_distillation_loss"
+    - "temperature_scaled_loss"
+  
+  # Fisher Information Metrics
+  fisher_metrics:
+    - "fisher_information_score"
+    - "layer_importance_ranking"
+    - "fisher_weight_distribution"
+    - "semantic_preservation_ratio"
+    - "layer_contribution_variance"
+  
+  # Model Performance Metrics
+  performance_metrics:
+    - "inference_latency"
+    - "memory_usage"
+    - "model_size_mb"
+    - "compression_ratio"
+    - "speedup_factor"
+  
+  # Tracking Configuration
+  track_gradients: true
+  track_activations: false  # Expensive, only for analysis
+  save_intermediate_results: true
+  compute_layer_statistics: true
+
+# Evaluation Configuration
+evaluation:
+  # Evaluation Schedule
+  eval_interval_steps: 100    # Evaluate every N steps
+  eval_interval_epochs: 1     # Evaluate every N epochs
+  
+  # Model Saving
+  save_best_model: true
+  save_checkpoint_every_n_epochs: 2
+  keep_last_n_checkpoints: 3
+  
+  # Early Stopping
+  early_stopping:
+    enabled: true
+    patience: 5               # epochs
+    monitor_metric: "ndcg@5"
+    min_delta: 0.001
+    restore_best_weights: true
+  
+  # Validation Configuration
+  validation_split: 0.1
+  test_split: 0.1
+  cross_validation_folds: 0   # 0 = no CV, >0 = k-fold CV
+
+# Experimental Design
+experimental_design:
+  # WWW2026 Paper Experiments
+  main_experiments:
+    fisher_vs_uniform:
+      description: "Compare Fisher-weighted vs uniform layer distillation"
+      baselines: ["uniform_weights", "attention_transfer", "fitnet"]
+      metrics: ["ndcg@5", "mrr", "inference_speed"]
+      
+    layer_importance_analysis:
+      description: "Analyze layer importance using Fisher information"
+      analysis_type: "fisher_heatmap"
+      save_visualizations: true
+      
+    semantic_preservation_study:
+      description: "Measure semantic understanding preservation"
+      evaluation_tasks: ["user_preference_understanding", "item_matching"]
+      
+    teacher_model_comparison:
+      description: "Compare different teacher models"
+      models: ["llama3", "qwen3", "gpt_oss"]
+      
+    inference_speed_benchmark:
+      description: "Benchmark inference speed vs quality trade-offs"
+      model_sizes: ["student_12L", "student_8L", "student_6L"]
+  
+  # Ablation Studies
+  ablation_studies:
+    fisher_weight_scale:
+      parameter: "fisher_weight_scale"
+      values: [0.5, 1.0, 1.5, 2.0, 2.5]
+      
+    semantic_emphasis:
+      parameter: "semantic_emphasis"
+      values: [1.0, 1.2, 1.5, 1.8, 2.0]
+      
+    layer_depth_bias:
+      parameter: "layer_depth_bias"
+      values: [0.5, 0.6, 0.7, 0.8, 0.9]
+      
+    temperature_sensitivity:
+      parameter: "temperature"
+      values: [2.0, 3.0, 4.0, 5.0, 6.0]
+  
+  # Hyperparameter Search
+  hyperparameter_search:
+    method: "grid_search"  # grid_search, random_search, bayesian
+    n_trials: 50
+    
+    search_space:
+      learning_rate: [1e-5, 2e-5, 5e-5, 1e-4]
+      batch_size: [4, 8, 16]
+      fisher_weight_scale: [1.0, 1.5, 2.0]
+      semantic_emphasis: [1.2, 1.5, 1.8]
+
+# Comparison Baselines
+baselines:
+  # Traditional Distillation Methods
+  uniform_distillation:
+    description: "Uniform layer weights"
+    layer_weights: "uniform"
+    
+  attention_transfer:
+    description: "Attention Transfer (Zagoruyko & Komodakis, 2017)"
+    transfer_type: "attention_maps"
+    
+  fitnet:
+    description: "FitNet (Romero et al., 2015)"
+    intermediate_layers: [3, 6, 9]
+    
+  # State-of-the-art Methods
+  layer_wise_adaptive:
+    description: "Layer-wise Adaptive Distillation"
+    adaptation_strategy: "performance_based"
+    
+  progressive_knowledge:
+    description: "Progressive Knowledge Distillation"
+    progression_schedule: "linear"
+
+# Result Analysis
+analysis:
+  # Statistical Analysis
+  statistical_tests:
+    - "paired_t_test"        # For metric comparisons
+    - "wilcoxon_signed_rank" # Non-parametric alternative
+    - "anova"                # Multi-group comparison
+    
+  # Visualization
+  visualizations:
+    - "fisher_heatmap"       # Layer importance visualization
+    - "performance_curves"   # Training/validation curves
+    - "metric_comparisons"   # Baseline vs proposed method
+    - "layer_contribution"   # Layer-wise contribution analysis
+    - "speedup_quality_plot" # Speed vs quality trade-off
+  
+  # Report Generation
+  auto_report:
+    enabled: true
+    template: "www2026_paper_template"
+    include_plots: true
+    include_tables: true
+    output_format: ["pdf", "html", "markdown"]
+
+# Resource Management
+resources:
+  # Compute Resources
+  max_concurrent_experiments: 2
+  gpu_memory_limit: "12GB"
+  cpu_cores_per_experiment: 4
+  
+  # Time Limits
+  max_experiment_duration: "48h"
+  checkpoint_interval: "1h"
+  auto_resume_interrupted: true
+  
+  # Storage
+  results_retention_days: 90
+  auto_cleanup_failed_experiments: true
+  compress_large_results: true
+
+# Quality Assurance
+quality_assurance:
+  # Validation Checks
+  validate_reproducibility: true
+  check_data_leakage: true
+  verify_baseline_implementations: true
+  
+  # Error Handling
+  retry_failed_experiments: true
+  max_retries: 3
+  fallback_configurations: true
+  
+  # Monitoring
+  alert_on_anomalous_results: true
+  track_experiment_health: true

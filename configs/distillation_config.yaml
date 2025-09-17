@@ -1,0 +1,170 @@
+# WWW2026 Layerwise Knowledge Distillation Configuration
+# Fisher Information Matrix-driven LLM Recommendation System
+
+# Experiment Metadata
+experiment:
+  name: "WWW2026_fisher_layerwise_distillation"
+  version: "2.0.0"
+  target_conference: "WWW2026"
+  description: "Fisher信息矩阵驱动的层级知识蒸馏"
+
+# Teacher Model Configuration (Llama3 - Verified Optimal)
+teacher_model:
+  name: "llama3:latest"
+  architecture: "Llama3"
+  num_layers: 32
+  hidden_size: 4096
+  num_attention_heads: 32
+  ollama_url: "http://localhost:11434/api/generate"
+  temperature: 0.1  # Low temperature for consistent distillation
+  
+# Student Model Configuration
+student_model:
+  name: "fisher_student_recommender"
+  architecture: "TransformerRecommender"
+  num_layers: 12
+  hidden_size: 768
+  num_attention_heads: 12
+  max_sequence_length: 512
+  vocab_size: 50000
+
+# Training Configuration  
+training:
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  learning_rate: 2e-5
+  num_epochs: 10
+  warmup_steps: 100
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  
+  # Multi-objective Loss Configuration
+  loss_weights:
+    alpha: 0.7    # 蒸馏损失权重
+    beta: 0.3     # 任务损失权重  
+    gamma: 0.1    # Fisher层级损失权重
+  
+  temperature: 4.0  # 知识蒸馏温度
+  
+# Fisher Information Matrix Configuration
+fisher:
+  # 计算参数
+  num_samples: 100           # Fisher计算样本数
+  regularization: 1e-6       # 正则化参数
+  diagonal_only: true        # 只计算对角元素
+  normalize: true            # 归一化Fisher权重
+  
+  # 缓存配置
+  use_cache: true
+  cache_dir: "cache/fisher_weights/"
+  
+  # 层级权重策略
+  layer_weight_strategy: "fisher_adaptive"  # linear, exponential, fisher_adaptive
+  semantic_emphasis: 1.5     # 高层语义强调因子
+  layer_depth_bias: 0.8      # 层深偏置 (0-1)
+  
+# Layerwise Weighting Configuration
+layer_weights:
+  strategy: "fisher_informed"  # fixed, linear, exponential, fisher_informed
+  
+  # Fisher权重参数
+  fisher_weight_scale: 2.0
+  min_weight: 0.1
+  max_weight: 5.0
+  
+  # 层级分组权重
+  layer_groups:
+    lower_layers:    # 0-30% 底层（语法/结构）
+      weight_range: [0.1, 0.5]
+      description: "Token embedding, positional encoding, basic linguistic features"
+    
+    middle_layers:   # 30-70% 中层（特征组合）
+      weight_range: [0.5, 1.0]
+      description: "Semantic composition, feature interaction"
+    
+    upper_layers:    # 70-100% 高层（语义推理）
+      weight_range: [1.0, 2.0]
+      description: "User preference reasoning, decision making"
+
+# Data Configuration
+data:
+  dataset_path: "dataset/amazon"
+  
+  # Amazon Categories (优先使用数据量适中的类别)
+  categories: 
+    - "All_Beauty"
+    - "Electronics" 
+    - "Office_Products"
+    - "Movies_and_TV"
+    - "Home_and_Kitchen"
+  
+  # 采样配置
+  max_samples_per_category: 1000
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  
+  # 数据预处理
+  max_user_profile_length: 500
+  max_candidate_items: 50
+  min_item_reviews: 5
+
+# Recommendation Configuration
+recommendation:
+  top_k: 5
+  candidate_pool_size: 100
+  use_fisher_scoring: true
+  fisher_temperature: 2.0
+  
+  # 评估指标
+  metrics:
+    - "ndcg@5"
+    - "mrr"
+    - "hit_rate@5"
+    - "fisher_preservation_score"
+
+# Hardware Configuration
+hardware:
+  device: "auto"  # auto, cpu, cuda:0
+  mixed_precision: true
+  dataloader_num_workers: 4
+  pin_memory: true
+
+# Logging and Output Configuration
+logging:
+  level: "INFO"
+  use_wandb: false
+  wandb_project: "WWW2026_layerwise_distillation"
+  
+  # 输出路径
+  output_dir: "results/distillation/"
+  model_save_dir: "models/fisher_student/"
+  log_dir: "logs/"
+  
+  # 保存频率
+  save_every_n_epochs: 2
+  eval_every_n_steps: 100
+  log_every_n_steps: 10
+
+# Evaluation Configuration
+evaluation:
+  batch_size: 16
+  
+  # 对比方法
+  baselines:
+    - "uniform_distillation"
+    - "attention_transfer"
+    - "fitnet"
+    - "teacher_direct"
+  
+  # Fisher信息分析
+  fisher_analysis:
+    compute_layer_importance: true
+    visualize_fisher_distribution: true
+    save_fisher_heatmap: true
+
+# Reproducibility
+reproducibility:
+  seed: 42
+  deterministic: true
+  benchmark: false

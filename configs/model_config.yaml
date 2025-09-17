@@ -1,0 +1,172 @@
+# WWW2026 Model Configuration
+# Fisher Information-driven Layerwise Knowledge Distillation
+
+# Service Configuration
+ollama:
+  url: "http://localhost:11434"
+  api_endpoint: "/api/generate"
+  timeout: 30
+  max_retries: 3
+  retry_delay: 1.0
+
+# Teacher Models (WWW2026 Evaluation Results)
+teacher_models:
+  llama3:
+    name: "llama3:latest"
+    description: "Llama3 - Verified optimal for recommendation tasks"
+    architecture: "Llama3-8B"
+    num_layers: 32
+    hidden_size: 4096
+    num_attention_heads: 32
+    
+    # WWW2026 Optimized Parameters
+    temperature: 0.1        # Low temp for consistent distillation
+    max_tokens: 512
+    top_p: 0.9
+    repeat_penalty: 1.1
+    
+    # Performance Metrics (from experiments)
+    response_time: 2.31     # seconds
+    quality_score: 0.85     # 优秀
+    fisher_score: 0.85      # High Fisher information content
+    recommendation_rating: 5 # ⭐⭐⭐⭐⭐
+    
+    # Fisher Layer Characteristics
+    layer_distribution:
+      lower_layers: 0.3     # 底层贡献度
+      middle_layers: 0.7    # 中层贡献度  
+      upper_layers: 1.5     # 高层贡献度（最重要）
+  
+  # 备选Teacher模型 (对比实验用)
+  qwen3:
+    name: "qwen3:latest"  
+    description: "Qwen3 - Alternative teacher model"
+    temperature: 0.2
+    max_tokens: 400
+    response_time: 3.20
+    quality_score: 0.78
+    fisher_score: 0.78
+    recommendation_rating: 4
+    
+  gpt_oss:
+    name: "gpt-oss:latest"
+    description: "GPT-OSS - Baseline comparison"
+    temperature: 0.3
+    max_tokens: 300
+    response_time: 4.98
+    quality_score: 0.62
+    fisher_score: 0.62
+    recommendation_rating: 2
+
+# Student Model Architecture
+student_model:
+  name: "fisher_student_recommender"  
+  description: "Fisher信息驱动的轻量级推荐学生模型"
+  
+  # Architecture Parameters
+  architecture: "TransformerRecommender"
+  num_layers: 12              # 压缩比 12/32 = 37.5%
+  hidden_size: 768            # 压缩比 768/4096 = 18.75%
+  intermediate_size: 3072     # 4 * hidden_size
+  num_attention_heads: 12
+  attention_head_size: 64     # hidden_size / num_attention_heads
+  
+  # Sequence Configuration  
+  max_position_embeddings: 512
+  vocab_size: 50000
+  type_vocab_size: 2
+  
+  # Layerwise Adapter Configuration
+  use_layerwise_adapter: true
+  adapter_hidden_size: 256
+  adapter_dropout: 0.1
+  
+  # Fisher Integration
+  use_fisher_weighting: true
+  fisher_attention_mechanism: true
+  semantic_layer_emphasis: 1.5
+
+# Model Selection Strategy
+selection_strategy:
+  primary_teacher: "llama3"    # WWW2026 verified optimal
+  fallback_teachers: ["qwen3", "gpt_oss"]
+  
+  # 自动选择标准  
+  selection_criteria:
+    - "response_time < 5.0"    # 响应时间要求
+    - "fisher_score > 0.7"     # Fisher信息质量
+    - "quality_score > 0.75"   # 推荐质量要求
+
+# Recommendation Configuration
+recommendation:
+  # 推荐参数
+  top_k: 5                    # 推荐物品数量
+  candidate_pool_size: 50     # 候选池大小
+  max_user_profile_length: 500
+  max_item_description_length: 200
+  
+  # Fisher增强配置
+  use_fisher_scoring: true
+  fisher_temperature: 2.0     # Fisher权重温度
+  semantic_boost_factor: 1.5  # 语义层增强
+  
+  # 评估配置
+  evaluation_metrics:
+    - "ndcg@5"
+    - "ndcg@10" 
+    - "mrr"
+    - "hit_rate@5"
+    - "diversity_score"
+    - "fisher_preservation_ratio"
+
+# Training Configuration
+training:
+  # Distillation Strategy
+  distillation_method: "layerwise_fisher"
+  
+  # Layer Weight Strategies
+  layer_weight_strategies:
+    linear:
+      description: "线性递增权重"
+      formula: "weight = (layer_idx + 1) / num_layers"
+      
+    exponential:  
+      description: "指数递增权重"
+      formula: "weight = exp(layer_idx / num_layers) - 1"
+      
+    fisher_adaptive:
+      description: "Fisher信息自适应权重 (WWW2026)"
+      formula: "weight = fisher_score * semantic_emphasis"
+  
+  # Optimization
+  optimizer: "AdamW"
+  scheduler: "linear_warmup_cosine_decay"
+  
+# Hardware Requirements
+hardware:
+  minimum_gpu_memory: "8GB"   # Student model training
+  recommended_gpu_memory: "16GB"  # Full pipeline
+  cpu_cores: 4
+  ram: "32GB"
+  
+  # Performance Expectations
+  expected_speedup: "3.2x"    # vs full Llama3
+  memory_reduction: "68%"     # vs full Llama3
+  quality_retention: "92%"    # vs full Llama3
+
+# Experimental Configuration  
+experiments:
+  # WWW2026 Paper Experiments
+  paper_experiments:
+    - "fisher_vs_uniform_distillation"
+    - "layer_importance_analysis" 
+    - "semantic_preservation_study"
+    - "inference_speed_comparison"
+    - "recommendation_quality_evaluation"
+  
+  # Ablation Studies
+  ablation_studies:
+    - "fisher_weight_scale_sensitivity"
+    - "semantic_emphasis_impact"
+    - "layer_depth_bias_effect"
+    - "teacher_model_comparison"
