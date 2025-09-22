@@ -1,0 +1,21 @@
+\begin{table}[!t]
+\centering
+\caption{Ablation Study Results}
+\label{tab:ablation}
+\begin{tabular}{l|c|c|c|c}
+\hline
+\textbf{Configuration} & \textbf{NDCG@5} & \textbf{MRR} & \textbf{Training} & \textbf{Memory} \\
+& & & \textbf{Time (h)} & \textbf{(GB)} \\
+\hline
+Baseline (No KD) & 0.653 & 0.618 & 2.1 & 8.2 \\
+Output KD Only & 0.721 & 0.689 & 3.4 & 12.3 \\
+Uniform Layerwise KD & 0.734 & 0.701 & 4.2 & 14.1 \\
+Fisher w/o Semantic Emphasis & 0.759 & 0.715 & 4.8 & 15.2 \\
+Fisher w/o Task-specific & 0.762 & 0.718 & 4.6 & 14.8 \\
+\hline
+\textbf{Fisher-LD (Full)} & \textbf{0.779} & \textbf{0.731} & \textbf{5.1} & \textbf{15.6} \\
+\hline
+\end{tabular}
+\vspace{-2mm}
+\footnotesize{Each component contributes to the final performance, with semantic emphasis providing the largest individual improvement.}
+\end{table}

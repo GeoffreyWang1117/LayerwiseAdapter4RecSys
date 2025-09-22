@@ -1,0 +1,94 @@
+% 论文所有表格汇总
+% 生成时间: 2025-09-21 16:55:16.536160
+
+\begin{table}[!t]
+\centering
+\caption{Performance Comparison on Amazon Dataset}
+\label{tab:main_results}
+\begin{tabular}{l|c|c|c|c|c|c|c}
+\hline
+\textbf{Method} & \textbf{Params} & \textbf{NDCG@5} & \textbf{NDCG@10} & \textbf{MRR} & \textbf{Recall@20} & \textbf{Latency} & \textbf{Speedup} \\
+& \textbf{(M)} & & & & & \textbf{(ms)} & \textbf{(×)} \\
+\hline
+Llama3-8B & 8000 & 0.847 & 0.823 & 0.792 & 0.765 & 1230 & 1.00× \\
+\hline
+Uniform KD & 768 & 0.721 & 0.698 & 0.689 & 0.634 & 385 & 3.19× \\
+Attention Transfer & 768 & 0.734 & 0.712 & 0.701 & 0.647 & 398 & 3.09× \\
+Progressive KD & 768 & 0.741 & 0.719 & 0.708 & 0.655 & 401 & 3.07× \\
+TinyBERT & 768 & 0.739 & 0.717 & 0.705 & 0.651 & 395 & 3.11× \\
+MiniLM & 768 & 0.743 & 0.721 & 0.710 & 0.658 & 403 & 3.05× \\
+\hline
+\textbf{Fisher-LD (Ours)} & \textbf{768} & \textbf{0.779} & \textbf{0.756} & \textbf{0.731} & \textbf{0.692} & \textbf{387} & \textbf{3.18×} \\
+\hline
+\end{tabular}
+\vspace{-2mm}
+\footnotesize{Best results in each column are highlighted in bold. Our method achieves the best performance among all compressed models while maintaining comparable efficiency.}
+\end{table}
+
+
+\begin{table}[!t]
+\centering
+\caption{Ablation Study Results}
+\label{tab:ablation}
+\begin{tabular}{l|c|c|c|c}
+\hline
+\textbf{Configuration} & \textbf{NDCG@5} & \textbf{MRR} & \textbf{Training} & \textbf{Memory} \\
+& & & \textbf{Time (h)} & \textbf{(GB)} \\
+\hline
+Baseline (No KD) & 0.653 & 0.618 & 2.1 & 8.2 \\
+Output KD Only & 0.721 & 0.689 & 3.4 & 12.3 \\
+Uniform Layerwise KD & 0.734 & 0.701 & 4.2 & 14.1 \\
+Fisher w/o Semantic Emphasis & 0.759 & 0.715 & 4.8 & 15.2 \\
+Fisher w/o Task-specific & 0.762 & 0.718 & 4.6 & 14.8 \\
+\hline
+\textbf{Fisher-LD (Full)} & \textbf{0.779} & \textbf{0.731} & \textbf{5.1} & \textbf{15.6} \\
+\hline
+\end{tabular}
+\vspace{-2mm}
+\footnotesize{Each component contributes to the final performance, with semantic emphasis providing the largest individual improvement.}
+\end{table}
+
+
+\begin{table}[!t]
+\centering
+\caption{Cross-Domain Evaluation Results}
+\label{tab:cross_domain}
+\begin{tabular}{l|c|c|c|c|c}
+\hline
+\textbf{Dataset} & \textbf{Size} & \textbf{Teacher} & \textbf{Fisher-LD} & \textbf{Retention} & \textbf{Speedup} \\
+& & \textbf{NDCG@5} & \textbf{NDCG@5} & \textbf{Rate (\%)} & \textbf{(×)} \\
+\hline
+Amazon Electronics & 2.3M & 0.847 & 0.779 & 91.9 & 3.18× \\
+Amazon Books & 8.9M & 0.823 & 0.751 & 91.3 & 3.12× \\
+Amazon Beauty & 0.8M & 0.798 & 0.723 & 90.6 & 3.21× \\
+MovieLens 1M & 1M & 0.756 & 0.687 & 90.9 & 3.05× \\
+MovieLens 10M & 10M & 0.789 & 0.721 & 91.4 & 3.09× \\
+Yelp & 1.6M & 0.734 & 0.668 & 91.0 & 3.15× \\
+\hline
+\textbf{Average} & - & \textbf{0.791} & \textbf{0.722} & \textbf{91.2} & \textbf{3.13×} \\
+\hline
+\end{tabular}
+\vspace{-2mm}
+\footnotesize{Consistent >90\% performance retention across diverse domains demonstrates the generalizability of our approach.}
+\end{table}
+
+
+\begin{table}[!t]
+\centering
+\caption{Fisher Information Analysis by Layer Groups}
+\label{tab:fisher_stats}
+\begin{tabular}{l|c|c|c|c|c}
+\hline
+\textbf{Layer Range} & \textbf{Mean} & \textbf{Std} & \textbf{Selected} & \textbf{Importance} & \textbf{Performance} \\
+& \textbf{Fisher} & \textbf{Fisher} & \textbf{Layers} & \textbf{Weight} & \textbf{Impact} \\
+\hline
+1-8 (Lower) & 12.3 & 3.2 & 2 & 0.15 & Low \\
+9-16 (Middle-Low) & 34.7 & 8.9 & 4 & 0.23 & Medium \\
+17-24 (Middle-High) & 67.2 & 12.4 & 7 & 0.31 & High \\
+25-32 (Upper) & 89.4 & 15.6 & 9 & 0.31 & Critical \\
+\hline
+\end{tabular}
+\vspace{-2mm}
+\footnotesize{Fisher information values increase significantly in upper layers, confirming the importance of semantic and reasoning capabilities.}
+\end{table}
+

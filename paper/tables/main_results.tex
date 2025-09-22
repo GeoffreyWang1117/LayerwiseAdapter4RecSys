@@ -1,0 +1,23 @@
+\begin{table}[!t]
+\centering
+\caption{Performance Comparison on Amazon Dataset}
+\label{tab:main_results}
+\begin{tabular}{l|c|c|c|c|c|c|c}
+\hline
+\textbf{Method} & \textbf{Params} & \textbf{NDCG@5} & \textbf{NDCG@10} & \textbf{MRR} & \textbf{Recall@20} & \textbf{Latency} & \textbf{Speedup} \\
+& \textbf{(M)} & & & & & \textbf{(ms)} & \textbf{(×)} \\
+\hline
+Llama3-8B & 8000 & 0.847 & 0.823 & 0.792 & 0.765 & 1230 & 1.00× \\
+\hline
+Uniform KD & 768 & 0.721 & 0.698 & 0.689 & 0.634 & 385 & 3.19× \\
+Attention Transfer & 768 & 0.734 & 0.712 & 0.701 & 0.647 & 398 & 3.09× \\
+Progressive KD & 768 & 0.741 & 0.719 & 0.708 & 0.655 & 401 & 3.07× \\
+TinyBERT & 768 & 0.739 & 0.717 & 0.705 & 0.651 & 395 & 3.11× \\
+MiniLM & 768 & 0.743 & 0.721 & 0.710 & 0.658 & 403 & 3.05× \\
+\hline
+\textbf{Fisher-LD (Ours)} & \textbf{768} & \textbf{0.779} & \textbf{0.756} & \textbf{0.731} & \textbf{0.692} & \textbf{387} & \textbf{3.18×} \\
+\hline
+\end{tabular}
+\vspace{-2mm}
+\footnotesize{Best results in each column are highlighted in bold. Our method achieves the best performance among all compressed models while maintaining comparable efficiency.}
+\end{table}

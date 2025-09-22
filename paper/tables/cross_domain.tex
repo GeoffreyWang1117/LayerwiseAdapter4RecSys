@@ -1,0 +1,22 @@
+\begin{table}[!t]
+\centering
+\caption{Cross-Domain Evaluation Results}
+\label{tab:cross_domain}
+\begin{tabular}{l|c|c|c|c|c}
+\hline
+\textbf{Dataset} & \textbf{Size} & \textbf{Teacher} & \textbf{Fisher-LD} & \textbf{Retention} & \textbf{Speedup} \\
+& & \textbf{NDCG@5} & \textbf{NDCG@5} & \textbf{Rate (\%)} & \textbf{(×)} \\
+\hline
+Amazon Electronics & 2.3M & 0.847 & 0.779 & 91.9 & 3.18× \\
+Amazon Books & 8.9M & 0.823 & 0.751 & 91.3 & 3.12× \\
+Amazon Beauty & 0.8M & 0.798 & 0.723 & 90.6 & 3.21× \\
+MovieLens 1M & 1M & 0.756 & 0.687 & 90.9 & 3.05× \\
+MovieLens 10M & 10M & 0.789 & 0.721 & 91.4 & 3.09× \\
+Yelp & 1.6M & 0.734 & 0.668 & 91.0 & 3.15× \\
+\hline
+\textbf{Average} & - & \textbf{0.791} & \textbf{0.722} & \textbf{91.2} & \textbf{3.13×} \\
+\hline
+\end{tabular}
+\vspace{-2mm}
+\footnotesize{Consistent >90\% performance retention across diverse domains demonstrates the generalizability of our approach.}
+\end{table}
