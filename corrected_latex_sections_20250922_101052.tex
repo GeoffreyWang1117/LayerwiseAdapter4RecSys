@@ -1,0 +1,61 @@
+% 修正后的论文sections
+% Generated: 2025-09-22T10:10:52.875622
+
+% EXPERIMENTAL_SETUP
+
+% 修正硬件配置说明
+\textbf{Hardware Configuration:} All experiments were conducted on a workstation equipped with dual NVIDIA GeForce RTX 3090 GPUs (24GB VRAM each), AMD Ryzen 9 5950X CPU (32 cores), and 128GB DDR4 RAM. The edge deployment validation used NVIDIA Jetson Orin Nano.
+
+
+% RESULTS_TABLE
+
+% 修正后的Table 1: 基于真实Amazon Electronics数据的基线对比
+\begin{table}[t]
+\centering
+\caption{Performance Comparison on Amazon Electronics Dataset (Real Results)}
+\label{tab:baseline_comparison_real}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{NDCG@5} & \textbf{RMSE} & \textbf{Latency (ms)} & \textbf{Params} \\
+\midrule
+Baseline MF & 1.0000 & 1.0244 & 0.18 & 971,265 \\
+KD Student & 1.0000 & 1.0343 & 0.22 & 956,801 \\
+\textbf{Fisher-LD (Ours)} & 0.8728 & 1.0903 & 0.44 & 956,804 \\
+
+\bottomrule
+\end{tabular}%
+}
+\vspace{-0.3cm}
+\end{table}
+
+
+% PERFORMANCE_ANALYSIS
+
+% 修正后的性能分析
+\subsection{Performance Analysis on Real Data}
+
+Based on our experiments conducted on the Amazon Electronics dataset with 183,094 ratings from 9,840 users and 4,948 items, we observe the following:
+
+\textbf{Baseline Performance:} The traditional matrix factorization baseline (Baseline\_MF) achieves NDCG@5 of 1.0000 with RMSE of 1.0244. The knowledge distillation student model (KD\_Student) shows comparable performance with NDCG@5 of 1.0000.
+
+\textbf{Fisher-Guided Method:} Our Fisher-guided approach shows different characteristics than initially expected. While it maintains parameter efficiency (956,804 parameters), the NDCG@5 performance is 0.8728, indicating room for optimization in the Fisher information utilization strategy.
+
+\textbf{Efficiency Trade-offs:} The inference latency analysis reveals that our method requires 0.44ms per prediction compared to 0.18ms for the baseline, suggesting additional computational overhead from the Fisher weighting mechanism.
+
+
+% LIMITATIONS SECTION
+
+\subsection{Limitations and Future Work}
+
+Our experimental evaluation reveals several important limitations and opportunities for improvement:
+
+\textbf{Fisher Information Implementation:} The current Fisher-guided layer weighting strategy shows suboptimal performance compared to simpler baselines, suggesting that our approximation of the Fisher Information Matrix may not effectively capture the layerwise importance patterns. Future work should explore more sophisticated Fisher approximation techniques or alternative importance weighting mechanisms.
+
+\textbf{Scale and Scope:} The evaluation is conducted on a subset of Amazon Electronics data (183,094 ratings) due to computational constraints. Large-scale evaluation across multiple domains and datasets would provide more robust validation of the proposed approach.
+
+\textbf{Cross-Domain Transfer:} While we propose cross-domain applications, the actual transfer learning experiments between Amazon Electronics and MovieLens datasets reveal significant domain gaps that current techniques do not fully address.
+
+\textbf{Hardware Requirements:} The method requires dual RTX 3090 GPUs for training, which may limit practical deployment scenarios compared to more efficient alternatives.
+
+\textbf{Performance Gap:} The experimental results indicate that the Fisher-guided approach does not consistently outperform simpler knowledge distillation baselines, highlighting the need for further theoretical and empirical investigation.

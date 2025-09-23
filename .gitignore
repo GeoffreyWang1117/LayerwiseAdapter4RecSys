@@ -1,3 +1,17 @@
+# Environment Variables and Secrets
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+config.json
+secrets.json
+
+# API Keys and Tokens
+*api_key*
+*token*
+*secret*
+
 # Python
 __pycache__/
 *.py[cod]

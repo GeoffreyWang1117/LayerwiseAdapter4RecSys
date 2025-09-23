@@ -32,7 +32,6 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Fisher Information Matrix for Layer Importance}{2}{subsection.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}1}Layer-wise Fisher Computation}{2}{subsubsection.3.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}Importance Weight Derivation}{2}{subsubsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}3}Semantic Layer Emphasis}{2}{subsubsection.3.2.3}\protected@file@percent }
 \citation{hou2024bridging}
 \citation{harper2015movielens}
 \citation{hinton2015distilling}
@@ -41,9 +40,7 @@
 \citation{sun2019patient}
 \citation{jiao2019tinybert}
 \citation{wang2020minilm}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Efficient Fisher Information Computation}}{3}{algorithm.1}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{alg:fisher_computation}{{1}{3}{Efficient Fisher Information Computation}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}3}Semantic Layer Emphasis}{3}{subsubsection.3.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Fisher-guided Layerwise Distillation}{3}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}1}Multi-component Loss Function}{3}{subsubsection.3.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}2}Layer-wise Feature Matching}{3}{subsubsection.3.3.2}\protected@file@percent }
@@ -51,38 +48,41 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Efficient Fisher Computation}{3}{subsection.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-D}1}Sampling Strategy}{3}{subsubsection.3.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-D}2}Computational Complexity}{3}{subsubsection.3.4.2}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Efficient Fisher Information Computation}}{3}{algorithm.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{alg:fisher_computation}{{1}{3}{Efficient Fisher Information Computation}{algorithm.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental Setup}{3}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Datasets and Preprocessing}{3}{subsection.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Model Architectures}{3}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Baseline Methods}{3}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Training Configuration}{3}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Performance Comparison on Amazon Electronics Dataset (Real Experimental Results)}}{4}{table.caption.1}\protected@file@percent }
+\newlabel{tab:main_results}{{I}{4}{Performance Comparison on Amazon Electronics Dataset (Real Experimental Results)}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Training Configuration}{4}{subsection.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Evaluation Metrics}{4}{subsection.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {V}Results and Analysis}{4}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Overall Performance Comparison}{4}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Fisher Information Analysis}{4}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Cross-Domain Validation}{4}{subsection.5.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Fisher Information heatmap across layers and product categories. Darker colors indicate higher Fisher values. Upper layers consistently show 2.4× higher importance across all categories.}}{4}{figure.caption.2}\protected@file@percent }
 \newlabel{fig:fisher_analysis}{{1}{4}{Fisher Information heatmap across layers and product categories. Darker colors indicate higher Fisher values. Upper layers consistently show 2.4× higher importance across all categories}{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Impact of semantic emphasis parameter $\beta $ on NDCG@5 performance across different product categories.}}{4}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:semantic_emphasis}{{2}{4}{Impact of semantic emphasis parameter $\beta $ on NDCG@5 performance across different product categories}{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Comprehensive Ablation Studies}{4}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}1}Layer Weighting Strategies}{4}{subsubsection.5.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}2}Semantic Emphasis Analysis}{4}{subsubsection.5.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}3}Student Architecture Sensitivity}{4}{subsubsection.5.4.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Performance comparison on Amazon Product Reviews dataset (average across 5 categories)}}{5}{table.caption.1}\protected@file@percent }
-\newlabel{tab:main_results}{{I}{5}{Performance comparison on Amazon Product Reviews dataset (average across 5 categories)}{table.caption.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Cross-domain validation: Amazon→MovieLens transfer}}{5}{table.caption.3}\protected@file@percent }
-\newlabel{tab:cross_domain}{{II}{5}{Cross-domain validation: Amazon→MovieLens transfer}{table.caption.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Ablation study: Layer weighting strategies}}{5}{table.caption.4}\protected@file@percent }
-\newlabel{tab:ablation_weights}{{III}{5}{Ablation study: Layer weighting strategies}{table.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Cross-domain validation: Amazon→MovieLens transfer}}{4}{table.caption.3}\protected@file@percent }
+\newlabel{tab:cross_domain}{{II}{4}{Cross-domain validation: Amazon→MovieLens transfer}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Fisher Information Analysis}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Cross-Domain Validation}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Layer weighting strategies analysis (based on Amazon Electronics dataset)}}{5}{table.caption.4}\protected@file@percent }
+\newlabel{tab:ablation_weights}{{III}{5}{Layer weighting strategies analysis (based on Amazon Electronics dataset)}{table.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Impact of semantic emphasis parameter $\beta $ on NDCG@5 performance across different product categories.}}{5}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:semantic_emphasis}{{2}{5}{Impact of semantic emphasis parameter $\beta $ on NDCG@5 performance across different product categories}{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Comprehensive Ablation Studies}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}1}Layer Weighting Strategies}{5}{subsubsection.5.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}2}Semantic Emphasis Analysis}{5}{subsubsection.5.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-D}3}Student Architecture Sensitivity}{5}{subsubsection.5.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Computational Efficiency Analysis}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Architecture analysis on Amazon Electronics dataset}}{5}{table.caption.6}\protected@file@percent }
+\newlabel{tab:student_architectures}{{IV}{5}{Architecture analysis on Amazon Electronics dataset}{table.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Fisher Information stability analysis showing convergence patterns and variance across training epochs.}}{5}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:fisher_stability}{{3}{5}{Fisher Information stability analysis showing convergence patterns and variance across training epochs}{figure.caption.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-F}}Error Analysis and Failure Cases}{5}{subsection.5.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-F}1}Performance Degradation Patterns}{5}{subsubsection.5.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-F}2}Fisher Information Stability Analysis}{5}{subsubsection.5.6.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Performance across different student architectures}}{5}{table.caption.6}\protected@file@percent }
-\newlabel{tab:student_architectures}{{IV}{5}{Performance across different student architectures}{table.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Fisher Information stability analysis showing convergence patterns and variance across training epochs.}}{5}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:fisher_stability}{{3}{5}{Fisher Information stability analysis showing convergence patterns and variance across training epochs}{figure.caption.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-G}}Large-Scale Evaluation}{5}{subsection.5.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-G}1}Scalability Analysis}{5}{subsubsection.5.7.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Scalability evaluation on Amazon recommendation datasets}}{6}{table.caption.8}\protected@file@percent }
@@ -93,15 +93,14 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-H}1}State-of-the-Art Comparison}{6}{subsubsection.5.8.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-H}2}Knowledge Transfer Quality Analysis}{6}{subsubsection.5.8.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-I}}Qualitative Analysis}{6}{subsection.5.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-I}1}Case Study: E-commerce Recommendation}{6}{subsubsection.5.9.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-I}2}Explanation Generation Quality}{6}{subsubsection.5.9.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-I}3}Layer Importance Visualization}{6}{subsubsection.5.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-I}1}Edge Deployment Evaluation}{6}{subsubsection.5.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-I}2}Layer Importance Visualization}{6}{subsubsection.5.9.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-J}}Statistical Significance and Reproducibility}{6}{subsection.5.10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-J}1}Statistical Analysis}{6}{subsubsection.5.10.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Knowledge transfer quality measured by Centered Kernel Alignment (CKA) between teacher and student layer representations.}}{6}{figure.caption.10}\protected@file@percent }
 \newlabel{fig:knowledge_transfer}{{4}{6}{Knowledge transfer quality measured by Centered Kernel Alignment (CKA) between teacher and student layer representations}{figure.caption.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Qualitative comparison of recommendation quality}}{6}{table.caption.11}\protected@file@percent }
-\newlabel{tab:case_study}{{VII}{6}{Qualitative comparison of recommendation quality}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Edge deployment performance comparison}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:edge_deployment}{{VII}{6}{Edge deployment performance comparison}{table.caption.11}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {V-J}2}Reproducibility}{6}{subsubsection.5.10.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {VI}Theoretical Analysis and Insights}{6}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Information-Theoretic Foundation}{6}{subsection.6.1}\protected@file@percent }
@@ -158,12 +157,37 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-F}1}Environmental Impact}{10}{subsubsection.9.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-F}2}Fairness and Bias Considerations}{10}{subsubsection.9.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {IX-F}3}Societal Implications}{10}{subsubsection.9.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {X}Conclusion}{10}{section.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {X-A}}Summary of Contributions}{10}{subsection.10.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {X-B}}Key Insights and Findings}{10}{subsection.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {X}Limitations and Future Work}{10}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {XI}Conclusion}{10}{section.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {XI-A}}Summary of Contributions}{10}{subsection.11.1}\protected@file@percent }
 \bibstyle{IEEEtran}
 \bibdata{references}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {X-C}}Broader Impact}{11}{subsection.10.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {X-D}}Future Directions and Open Questions}{11}{subsection.10.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {X-E}}Final Remarks}{11}{subsection.10.5}\protected@file@percent }
-\gdef \@abspage@last{11}
+\bibcite{zhao2023llm4rec}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {XI-B}}Key Insights and Findings}{11}{subsection.11.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {XI-C}}Broader Impact}{11}{subsection.11.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {XI-D}}Future Directions and Open Questions}{11}{subsection.11.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {XII}Conclusion}{11}{section.12}\protected@file@percent }
+\bibcite{li2023llm4rec}{2}
+\bibcite{hinton2015distilling}{3}
+\bibcite{rogers2020primer}{4}
+\bibcite{tenney2019bert}{5}
+\bibcite{zagoruyko2016attention}{6}
+\bibcite{wang2020minilm}{7}
+\bibcite{romero2014fitnets}{8}
+\bibcite{passban2021alp}{9}
+\bibcite{sun2019patient}{10}
+\bibcite{jiao2019tinybert}{11}
+\bibcite{kirkpatrick2017overcoming}{12}
+\bibcite{lee2018snip}{13}
+\bibcite{wang2020picking}{14}
+\bibcite{turner2019blockwise}{15}
+\bibcite{hou2022towards}{16}
+\bibcite{zhang2021neural}{17}
+\bibcite{li2023chatgpt}{18}
+\bibcite{dai2023uncovering}{19}
+\bibcite{geng2022recommendation}{20}
+\bibcite{bao2023tallrec}{21}
+\bibcite{hou2024bridging}{22}
+\bibcite{harper2015movielens}{23}
+\@writefile{toc}{\contentsline {section}{References}{12}{section*.17}\protected@file@percent }
+\gdef \@abspage@last{12}
