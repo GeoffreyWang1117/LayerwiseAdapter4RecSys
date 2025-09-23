@@ -172,15 +172,47 @@ methods = {
 - **新发现**: 层重要性分布规律
 
 ```bash
+## � 通用框架扩展
+
+### Universal Layerwise-Adapter
+我们已经开始构建通用框架，支持跨领域、跨模态的层重要性分析：
+
+```python
+# 通用框架使用示例
+from src.universal.layerwise_adapter import create_analyzer
+
+# 文本分类任务
+text_adapter = create_analyzer(
+    model_name="bert-base-uncased",
+    task_type="classification",
+    modality_type="text"
+)
+
+# 图像分类任务  
+vision_adapter = create_analyzer(
+    model_name="resnet50",
+    task_type="classification", 
+    modality_type="vision"
+)
+
+# 相同的API，不同的模态
+text_results = text_adapter.analyze_importance(text_data)
+vision_results = vision_adapter.analyze_importance(image_data)
+```
+
+### 支持的模态和任务
+- **模态**: 文本、视觉、音频、多模态、图、表格
+- **任务**: 分类、生成、检索、推荐、检测、分割等10+任务
+- **方法**: Fisher信息、梯度分析、层消融等多种分析方法
+
+详见: [Universal Framework Design](UNIVERSAL_FRAMEWORK_DESIGN.md)
+
 ## 🔧 开发与部署
 
-### 添加新分析方法
-```python
-# 在src/core/新增分析器
-class NewImportanceAnalyzer:
-    def calculate_importance(self, model, data):
-        # 实现新的重要性计算方法
-        pass
+### 运行通用框架演示
+```bash
+# 演示跨模态分析能力
+python examples/universal_demo.py
 ```
 
 ### 生产部署指南
